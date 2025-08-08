@@ -25,11 +25,7 @@ const items = [
         url: "#",
         icon: Inbox,
     },
-    {
-        title: "Calendar",
-        url: "#",
-        icon: Calendar,
-    },
+    
     {
         title: "Search",
         url: "#",
@@ -73,7 +69,9 @@ export function AppSidebar() {
                 </SidebarGroup>
             </SidebarContent>
             <SidebarFooter>
-                <h2 className='p-2 text-gray-400 text-sm'>Copyright @Tubeguruji</h2>
+                <div className='p-4 text-center'>
+                    <p className='text-sm text-gray-500'>© 2025 CodeCanvas</p>
+                </div>
             </SidebarFooter>
         </Sidebar>
     )

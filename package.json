@@ -1,5 +1,5 @@
 {
-  "name": "nextjs-boilerplate-1",
+  "name": "Code-Canvas.ai",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -15,6 +15,12 @@
     "@radix-ui/react-separator": "^1.1.1",
     "@radix-ui/react-slot": "^1.1.1",
     "@radix-ui/react-tooltip": "^1.1.7",
+    "@tabler/icons-react": "^3.34.1",
+    "@tailwindcss/cli": "^4.1.11",
+    "@tailwindcss/postcss": "^4.1.11",
+    "@tsparticles/engine": "^3.8.1",
+    "@tsparticles/react": "^3.0.0",
+    "@tsparticles/slim": "^3.8.1",
     "axios": "^1.7.9",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -22,19 +28,22 @@
     "drizzle-orm": "^0.39.1",
     "firebase": "^11.2.0",
     "lucide-react": "^0.474.0",
+    "motion": "^12.23.6",
     "next": "15.1.6",
+    "next-themes": "^0.4.6",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "tailwind-merge": "^3.0.1",
+    "tailwind-merge": "^2.6.0",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "autoprefixer": "^10.4.21",
     "drizzle-kit": "^0.30.4",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17",
     "tsx": "^4.19.2",
     "typescript": "^5"
   }

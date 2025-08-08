@@ -3,6 +3,7 @@ import { auth } from '@/configs/firebaseConfig';
 import { AuthContext } from '@/context/AuthContext';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import React, { useContext, useEffect, useState } from 'react'
+import { ThemeProvider } from "next-themes";
 
 interface AuthContextType {
     user: User | null;
@@ -24,11 +25,11 @@ function Provider({
     }, []);
 
     return (
-        <AuthContext.Provider value={{ user }}>
-            <div>
-                {children}
-            </div>
-        </AuthContext.Provider>
+         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <AuthContext.Provider value={{ user }}>
+        {children}
+      </AuthContext.Provider>
+    </ThemeProvider>
     )
 }
 
