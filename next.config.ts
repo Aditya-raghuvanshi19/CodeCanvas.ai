@@ -10,7 +10,8 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/aditya999/**',
       }
-    ]
+    ],
+    domains: ["lh3.googleusercontent.com"],
   }
 };
 

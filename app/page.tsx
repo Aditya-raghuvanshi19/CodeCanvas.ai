@@ -13,17 +13,9 @@ export default function Home() {
   console.log(user?.user)
   return (
     <div>
-      
-          
-          
-       
-       <NavBar />
-        
-          <Hero />
-        
      
-    
-
+       <NavBar />
+          <Hero />
       <FooterName />
     </div>
   );

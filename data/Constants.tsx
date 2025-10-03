@@ -47,12 +47,12 @@ export default {
         {
             name: 'llama By Meta',
             icon: '/meta.png',
-            modelName: 'google/gemini-2.0-flash-001'
+            modelName: 'meta-llama/llama-3.3-8b-instruct'
         },
         {
             name: 'Deepkseek',
             icon: '/deepseek.png',
-            modelName: 'qwen/qwen-turbo'
+            modelName: 'deepseek/deepseek-chat-v3.1'
         }
     ],
     DEPENDANCY: {

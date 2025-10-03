@@ -1,11 +1,11 @@
 "use client"
-import React, { useEffect } from 'react'
-import { useAuthContext } from '../provider';
+import React, { useEffect, useState } from 'react'
+import { useAuthContext } from '@/app/provider';
 import { useRouter } from 'next/navigation';
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import axios from "axios";
-import AppHeader from '../_components/AppHeader';
-import { AppSidebar } from '../_components/AppSidebar';
+import AppHeader from '@/app/_components/AppHeader';
+import { AppSidebar } from '@/app/_components/AppSidebar';
 
 function DashboardProvider({
     children,
@@ -15,26 +15,38 @@ function DashboardProvider({
 
     const user = useAuthContext();
     const router = useRouter();
+    const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        if (!user?.user && user.user) return router.replace('/')
+   useEffect(() => {
+          // If user is not logged in, redirect to landing page
+          if (user === null || !user.user) {
+              router.replace('/');
+          } else {
+              // Optional: check user in DB
+              checkUser();
+          }
+      }, [user]);
 
 
-        user?.user && checkUser()
-
-    }, [user])
-
-
-    const checkUser = async () => {
-        const result = await axios.post('/api/user', {
-            userName: user?.user?.displayName,
-            userEmail: user?.user?.email
-        });
-        console.log(user);
+     const checkUser = async () => {
+        try {
+            await axios.post('/api/user', {
+                userName: user?.user?.displayName,
+                userEmail: user?.user?.email
+            });
+        } catch (error) {
+            console.error("Error checking user:", error);
+        } finally {
+            setLoading(false);
+        }
     }
+     // While checking user or redirecting, show nothing or loader
+    if (!user?.user || loading) return null;
 
 
     return (
+
+        
         <SidebarProvider>
             <AppSidebar />
             <main className='w-full'>

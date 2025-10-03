@@ -8,6 +8,8 @@ function Credits() {
 
     const { user } = useAuthContext();
     const [userData, setUserData] = useState<any>();
+
+    console.log("credit page user:", user)
     useEffect(() => {
         user && GetUserCredits();
     }, [user])

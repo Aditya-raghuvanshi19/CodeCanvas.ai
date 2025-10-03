@@ -1,44 +1,42 @@
-"use client"
-import { auth } from '@/configs/firebaseConfig';
-import { AuthContext } from '@/context/AuthContext';
-import { onAuthStateChanged, User } from 'firebase/auth';
-import React, { useContext, useEffect, useState } from 'react'
+"use client";
+import { auth } from "@/configs/firebaseConfig";
+import { createContext, useContext, useEffect, useState } from "react";
+import { User, onAuthStateChanged } from "firebase/auth";
 import { ThemeProvider } from "next-themes";
 
 interface AuthContextType {
-    user: User | null;
+  user: User | null | undefined;
 }
 
-function Provider({
-    children,
-}: Readonly<{
-    children: React.ReactNode;
-}>) {
-    const [user, setUser] = useState<User | null>(null);
+export const AuthContext = createContext<AuthContextType | undefined>(
+  undefined
+);
 
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            setUser(user);
-        });
+function MainProvider({ children }: { children: React.ReactNode }) {
+  // use undefined as "loading"
+  const [user, setUser] = useState<User | null | undefined>(undefined);
 
-        return () => unsubscribe(); // Cleanup
-    }, []);
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      console.log("Auth state changed:", firebaseUser);
+      setUser(firebaseUser); // can be null or User
+    });
+    return () => unsubscribe();
+  }, []);
 
-    return (
-         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-      <AuthContext.Provider value={{ user }}>
-        {children}
-      </AuthContext.Provider>
+  return (
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
     </ThemeProvider>
-    )
+  );
 }
 
-// Custom hook to use auth
 export const useAuthContext = (): AuthContextType => {
-    const context = useContext(AuthContext);
-    if (!context) throw new Error("useAuth must be used within an AuthProvider");
-    return context;
+  const context = useContext(AuthContext);
+  if (!context)
+    throw new Error("useAuthContext must be used inside MainProvider");
+ 
+  return context;
 };
 
-export default Provider
-
+export default MainProvider;

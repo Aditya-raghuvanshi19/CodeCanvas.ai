@@ -28,7 +28,7 @@ export function Hero() {
           <div className="mt-8 gap-3 flex justify-center">
             {user?.user?.email ?
               
-                <HoverBorderGradient
+            <HoverBorderGradient
             containerClassName="rounded-full"
             as="button"
             className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2 px-6 py-3"
