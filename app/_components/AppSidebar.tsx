@@ -12,10 +12,11 @@ import {
 } from "@/components/ui/sidebar";
 import { Home, Paintbrush, CircleDollarSign, LogOut } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { auth } from "@/configs/firebaseConfig";
-import { signOut } from "firebase/auth"; // ✅ adjust to your firebase config
+import { signOut } from "firebase/auth";
 
 const items = [
   { title: "Workspace", url: "/dashboard", icon: Home },
@@ -30,7 +31,7 @@ export function AppSidebar() {
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
-        router.replace("/"); // redirect to login/home after logout
+        router.replace("/"); // redirect to landing/login page
       })
       .catch((error) => {
         console.error("Logout error:", error);
@@ -57,7 +58,7 @@ export function AppSidebar() {
               {items.map((item, index) => {
                 const isActive = path === item.url;
                 return (
-                  <a
+                  <Link
                     href={item.url}
                     key={index}
                     className={`
@@ -72,7 +73,7 @@ export function AppSidebar() {
                   >
                     <item.icon className="h-5 w-5 shrink-0" />
                     <span>{item.title}</span>
-                  </a>
+                  </Link>
                 );
               })}
             </SidebarMenu>

@@ -1,39 +1,76 @@
-"use client"
-import { useAuthContext } from '@/app/provider'
-import { Button } from '@/components/ui/button'
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+"use client";
+
+import { useAuthContext } from "@/app/provider";
+import { Button } from "@/components/ui/button";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Coins } from "lucide-react";
 
 function Credits() {
+  const { user } = useAuthContext();
+  const [userData, setUserData] = useState<any>();
 
-    const { user } = useAuthContext();
-    const [userData, setUserData] = useState<any>();
+  useEffect(() => {
+    user && GetUserCredits();
+  }, [user]);
 
-    console.log("credit page user:", user)
-    useEffect(() => {
-        user && GetUserCredits();
-    }, [user])
-
-    const GetUserCredits = async () => {
-        const result = await axios.get('/api/user?email=' + user?.email);
-        console.log(result.data)
-        setUserData(result.data);
+  const GetUserCredits = async () => {
+    try {
+      const result = await axios.get("/api/user?email=" + user?.email);
+      setUserData(result.data);
+    } catch (error) {
+      console.error("Error fetching credits:", error);
     }
+  };
 
-    return (
-        <div>
-            <h2 className='font-bold text-2xl'>Credits</h2>
+  return (
+    <div className="p-6">
+      <h2 className="font-semibold text-3xl mb-8 text-foreground tracking-tight">
+        Credits Overview
+      </h2>
 
-            <div className='p-5 bg-slate-50 rounded-xl border
-             flex justify-between items-center mt-6'>
-                <div>
-                    <h2 className='font-bold text-xl'>My Credits:</h2>
-                    {userData?.credits && <p className='text-lg text-gray-500'>{userData?.credits} Credits left</p>}
-                </div>
-                <Button>Buy More Credits</Button>
+      {/* ✨ Stylish Credit Card Section */}
+      <div
+        className="relative rounded-2xl p-[2px] bg-gradient-to-r from-primary via-purple-500 to-pink-500 shadow-lg"
+      >
+        <div
+          className="flex flex-col sm:flex-row justify-between items-center gap-6
+          bg-background rounded-2xl p-6"
+        >
+          <div className="flex items-center gap-5">
+            <div
+              className="p-5 rounded-full bg-gradient-to-br from-primary/20 to-purple-500/20
+              text-primary flex items-center justify-center"
+            >
+              <Coins className="h-7 w-7" />
             </div>
+
+            <div>
+              <h3 className="font-semibold text-xl text-foreground">
+                My Credits
+              </h3>
+              <p className="text-base text-muted-foreground mt-1">
+                {userData?.credits
+                  ? `${userData?.credits} Credits Left`
+                  : "Fetching credits..."}
+              </p>
+            </div>
+          </div>
+
+           <Button size="lg" className="rounded-xl px-6">
+          Buy More Credits
+        </Button>
         </div>
-    )
+      </div>
+
+      <div className="mt-10 text-sm text-muted-foreground max-w-2xl leading-relaxed">
+        <p>
+          Your credits are used for converting wireframes to production-ready code.
+          Upgrade anytime to continue generating projects seamlessly.
+        </p>
+      </div>
+    </div>
+  );
 }
 
-export default Credits
+export default Credits;
