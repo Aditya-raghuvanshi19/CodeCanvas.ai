@@ -6,6 +6,7 @@ import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import axios from "axios";
 import AppHeader from '@/app/_components/AppHeader';
 import { AppSidebar } from '@/app/_components/AppSidebar';
+import { ThemeProvider } from "next-themes";
 
 function DashboardProvider({
     children,
@@ -46,7 +47,7 @@ function DashboardProvider({
 
     return (
 
-        
+         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
         <SidebarProvider>
             <AppSidebar />
             <main className='w-full'>
@@ -55,6 +56,7 @@ function DashboardProvider({
                 <div className='p-10'>{children}</div>
             </main>
         </SidebarProvider>
+        </ThemeProvider>
 
     )
 }

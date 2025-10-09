@@ -9,9 +9,11 @@ import { Download, Rocket } from 'lucide-react';
 import { useSidebar } from '../ui/sidebar';
 import { usePathname } from 'next/navigation';
 import { ActionContext } from '@/context/ActionContext';
+import LoadingPlaceholder from "../custom/LoadingPlaceholder";
 
 function Header() {
   const { userDetail, setUserDetail } = useContext(UserDetailContext);
+
   const { action, setAction } = useContext(ActionContext);
   const { toggleSidebar } = useSidebar();
   const pathname = usePathname();
@@ -22,6 +24,10 @@ function Header() {
     })
 
   }
+  
+ if (userDetail === undefined) {
+  return <LoadingPlaceholder />; // invisible placeholder while loading
+}
   return (
     <div className="p-4 flex justify-between items-center">
       <Link href={'/prompt-to-code/second-tool'}>

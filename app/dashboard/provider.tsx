@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import LoadingScreen from "@/components/custom/LoadingScreen";
+import { ThemeProvider } from "next-themes";
 
 function DashboardProvider({ children }: { children: React.ReactNode }) {
   const { user } = useAuthContext();
@@ -42,7 +43,11 @@ function DashboardProvider({ children }: { children: React.ReactNode }) {
   // while firebase is loading OR DB check running
   if (user === undefined || checking) return <LoadingScreen />;
 
-  return <>{children}</>;
+  return <>
+  <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+  {children}
+  </ThemeProvider>
+  </>;
 }
 
 export default DashboardProvider;

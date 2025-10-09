@@ -32,9 +32,9 @@ export default function ThemeProvider({ children }: { children: React.ReactNode 
 
 	return (
 		<>
-			<button onClick={toggleTheme}>
+			{/* <button onClick={toggleTheme}>
 				 {theme === 'light' ? '🌙' : '☀️'}
-			</button>
+			</button> */}
 			{children}
 		</>
 	);

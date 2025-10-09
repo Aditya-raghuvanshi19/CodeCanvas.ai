@@ -8,7 +8,7 @@ export default function LoadingScreen() {
       {/* Logo / Icon */}
       <div className="flex items-center space-x-3 mb-6">
         <Sparkles className="h-10 w-10 text-purple-500 animate-pulse" />
-        <span className="text-2xl font-bold">Developer Dashboard</span>
+        <span className="text-2xl font-bold">DevCanvas.ai</span>
       </div>
 
       {/* Spinner */}
@@ -17,7 +17,7 @@ export default function LoadingScreen() {
       </div>
 
       {/* Loading Text */}
-      <p className="text-neutral-400 animate-pulse">Loading your dashboard...</p>
+      <p className="text-neutral-400 animate-pulse ml-3">Loading....</p>
     </div>
   );
 }

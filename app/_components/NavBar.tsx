@@ -59,7 +59,7 @@ export function NavBar() {
               }
             </NavbarButton>
             <NavbarButton variant="primary">Book a call</NavbarButton>
-            <NavbarButton variant="secondary"><ThemeProvider children={undefined} /></NavbarButton>
+            {/* <NavbarButton variant="secondary"><ThemeProvider children={undefined} /></NavbarButton> */}
           </div>
         </NavBody>
 

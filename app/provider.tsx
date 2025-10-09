@@ -25,7 +25,7 @@ function MainProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
       <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
     </ThemeProvider>
   );

@@ -16,6 +16,8 @@ import { motion } from "framer-motion";
 import { SparklesPreview } from "@/app/prompt-to-code/(main)/_components/Sparclespreview";
 
 import { SparklesCore } from "../ui/sparkles";
+import { useAuthContext } from "../../app/provider";
+import LoadingScreen from "./LoadingScreen";
 
 
 function Hero2() {
@@ -27,8 +29,14 @@ function Hero2() {
 
   const CreateWorkspace = useMutation(api.workspace.CreateWorkspace);
   const router = useRouter();
+  const { user } = useAuthContext();
+
+  if (userDetail === undefined) {
+  return <LoadingScreen />; // wait until Firebase / Convex finishes
+  }
 
  const onGenerate = async (input: string) => {
+
   if (!userDetail?.name) {
     setOpenDialog(true);
     return;
