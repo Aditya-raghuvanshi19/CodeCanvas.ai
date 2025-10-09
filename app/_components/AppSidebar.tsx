@@ -93,7 +93,7 @@ export function AppSidebar() {
             Sign Out
           </Button>
           <p className="text-xs text-muted-foreground text-center">
-            © CodeCanvas.AI
+            © DevCanvas.AI
           </p>
         </div>
       </SidebarFooter>

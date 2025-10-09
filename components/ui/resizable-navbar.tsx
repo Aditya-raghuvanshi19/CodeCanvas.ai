@@ -242,7 +242,7 @@ export const NavbarLogo = () => {
         width={90}
         height={60}
       />
-      <span className="font-medium text-black dark:text-white">CodeCanvas.AI</span>
+      <span className="font-medium text-black dark:text-white">DevCanvas.AI</span>
     </a>
   );
 };
